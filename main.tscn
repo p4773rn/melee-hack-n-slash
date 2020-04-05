@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://player.gd" type="Script" id=1]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type spatial;
+
+varying vec2 m_vertex;
+
+void vertex() {
+	m_vertex = VERTEX.xz;
+}
+
+void fragment() {
+	vec2 grid = (m_vertex + 1.) * .5;
+	grid = mod(trunc(grid*11.),2);
+	float white = float(grid.x == 1. && grid.y == 1. 
+					|| grid.x == 0. && grid.y == 0.);
+	ALBEDO = vec3(white);
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 10, 0.5, 15 )
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 5, 0.5, 20 )
+
+[sub_resource type="CapsuleShape" id=6]
+radius = 0.5
+height = 2.0
+
+[node name="Spatial" type="Spatial"]
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
+transform = Transform( 10, 0, 0, 0, 0.5, 0, 0, 0, 15, 0, -0.5, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
+shape = SubResource( 4 )
+
+[node name="StaticBody2" type="StaticBody" parent="."]
+transform = Transform( 0.0507497, 0, -0.998711, 0, 1, 0, 0.998711, 0, 0.0507497, 2.49808, -9.50886, 17.6117 )
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody2"]
+transform = Transform( 10, 0, 0, 0, 0.5, 0, 0, 0, 15, 0, -0.5, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
+shape = SubResource( 4 )
+
+[node name="StaticBody3" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.943223, -0.332161, 0, 0.332161, 0.943223, 13.8699, -3.97815, 3.1132 )
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody3"]
+transform = Transform( 5, 0, 0, 0, 0.5, 0, 0, 0, 20, 0, -0.5, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
+shape = SubResource( 5 )
+
+[node name="KinematicBody" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.39479, 0 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 6 )
+
+[node name="RotationHelper" type="Spatial" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09802, 0 )
+
+[node name="Camera" type="Camera" parent="KinematicBody/RotationHelper"]
