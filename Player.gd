@@ -134,4 +134,10 @@ func _input(event):
 
 		rotation_helper.rotate_x(deg2rad(x_change_deg))
 		self.rotate_y(deg2rad(y_change_deg))
-
+	
+	if event is InputEventMouseButton:
+		# if event.pressed is true then mouse button was just pressed
+		# otherwise just released
+		
+		for tracer in $RotationHelper/DebugTracers.get_children():
+			tracer.tracing = event.pressed
