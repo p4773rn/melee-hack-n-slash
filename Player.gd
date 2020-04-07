@@ -28,6 +28,9 @@ var rotation_helper
 var MOUSE_SENSITIVITY = 0.05
 
 
+const default_swipe_dir = Vector2(1,0)
+var swipe_dir_samples = []
+const swipe_sample_size = 20
 
 
 func _ready():
@@ -39,10 +42,13 @@ func _ready():
 	# We need to capture the mouse in order to use it for a FPS style camera control.
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
+	for _i in range(swipe_sample_size):
+		swipe_dir_samples.append(default_swipe_dir)
 
 func _physics_process(delta):
 	process_input(delta)
 	process_movement(delta)
+	
 	
 
 
@@ -138,6 +144,28 @@ func _input(event):
 	if event is InputEventMouseButton:
 		# if event.pressed is true then mouse button was just pressed
 		# otherwise just released
-		
-		for tracer in $RotationHelper/DebugTracers.get_children():
-			tracer.tracing = event.pressed
+		if event.pressed and event.button_index == BUTTON_LEFT:
+			$RotationHelper/Sword.swipe(swipe_dir)
+
+			
+	if event is InputEventMouseMotion:
+		swipe_dir_samples.push_back(event.relative)
+
+
+var swipe_angle = 0 # for debug
+var swipe_dir = Vector2(1,0)
+
+func _process(_delta):
+	swipe_dir_samples.pop_front()
+	if len(swipe_dir_samples) < swipe_sample_size:
+		swipe_dir_samples.push_back(default_swipe_dir)
+	
+	if Input.is_mouse_button_pressed(BUTTON_RIGHT):
+		swipe_angle += _delta
+	
+	swipe_dir = Vector2(0,0)
+	for sample in swipe_dir_samples:
+		swipe_dir += sample
+	swipe_dir = swipe_dir.normalized()
+	#swipe_dir = Vector2(cos(swipe_angle),sin(swipe_angle))
+	$Dirmometer.dir = swipe_dir

@@ -1,7 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
-[ext_resource path="res://DebugTracer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sword.gd" type="Script" id=2]
+[ext_resource path="res://assets/animations/swing_bottom.tres" type="AnimationNodeBlendSpace1D" id=3]
+[ext_resource path="res://assets/animations/swing_right.tres" type="AnimationNodeBlendSpace1D" id=4]
+[ext_resource path="res://assets/animations/swing_top.tres" type="AnimationNodeBlendSpace1D" id=5]
+[ext_resource path="res://assets/animations/swing_left.tres" type="AnimationNodeBlendSpace1D" id=6]
+[ext_resource path="res://Dirmometer.gd" type="Script" id=7]
+[ext_resource path="res://FpsLabel.gd" type="Script" id=8]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -34,6 +40,200 @@ extents = Vector3( 5, 0.5, 20 )
 [sub_resource type="CapsuleShape" id=6]
 radius = 0.5
 height = 2.0
+
+[sub_resource type="Animation" id=7]
+resource_name = "idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Handle:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -0.285163, 0.475115, -0.594882 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Handle:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 17.151 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "swing_bottom_left"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Handle:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -4.14111e-07, 29.633, 104.053 ), Vector3( -4.14111e-07, 29.633, 104.053 ), Vector3( 6.56648, -122.988, 64.1911 ), Vector3( 6.56648, -122.988, 64.1911 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Handle:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -2.37336, 0.563162, -0.687009 ), Vector3( -2.37336, 0.563162, -0.687009 ), Vector3( -0.43141, 1.17691, -0.404108 ), Vector3( -0.43141, 1.17691, -0.404108 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "swing_bottom_right"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Handle:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 4.00826, 20.795, -100.429 ), Vector3( 4.00826, 20.795, -100.429 ), Vector3( -1.56552, 124.642, -74.8226 ), Vector3( -1.56552, 124.642, -74.8226 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Handle:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.163521, 0.731435, -0.482372 ), Vector3( 0.163521, 0.731435, -0.482372 ), Vector3( -1.32445, 0.872328, -0.482372 ), Vector3( -1.32445, 0.872328, -0.482372 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Handle:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -50.299, 114.892, 17.516 ), Vector3( -50.299, 114.892, 17.516 ), Vector3( -50.299, 96.094, -109.647 ), Vector3( -50.299, 96.094, -109.647 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Handle:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -1.7811, 1.92299, -0.367017 ), Vector3( -1.7811, 1.92299, -0.367017 ), Vector3( -0.0642945, 0.697417, -0.321142 ), Vector3( -0.0642945, 0.697417, -0.321142 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Handle:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 0.420448, 0.420448 ),
+"update": 0,
+"values": [ Vector3( 0, 0, -36.984 ), Vector3( 0, 0, -36.984 ), Vector3( -50.299, 114.892, -109.647 ), Vector3( -50.299, 114.892, -109.647 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Handle:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 0.329877, 0.329877 ),
+"update": 0,
+"values": [ Vector3( -0.236247, 1.58752, -0.594882 ), Vector3( -0.236247, 1.58752, -0.594882 ), Vector3( -0.684399, 0.697417, -0.321142 ), Vector3( -0.684399, 0.697417, -0.321142 ) ]
+}
+
+[sub_resource type="CylinderMesh" id=12]
+top_radius = 0.02
+bottom_radius = 0.05
+height = 1.5
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachine" id=22]
+states/bottom/node = ExtResource( 3 )
+states/bottom/position = Vector2( 319.613, 201.667 )
+states/idle/node = SubResource( 13 )
+states/idle/position = Vector2( 319.621, 110.032 )
+states/left/node = ExtResource( 6 )
+states/left/position = Vector2( 148.333, 110.103 )
+states/right/node = ExtResource( 4 )
+states/right/position = Vector2( 488.333, 109.593 )
+states/top/node = ExtResource( 5 )
+states/top/position = Vector2( 319.477, 31 )
+transitions = [ "idle", "top", SubResource( 14 ), "top", "idle", SubResource( 15 ), "idle", "right", SubResource( 16 ), "right", "idle", SubResource( 17 ), "idle", "bottom", SubResource( 18 ), "bottom", "idle", SubResource( 19 ), "idle", "left", SubResource( 20 ), "left", "idle", SubResource( 21 ) ]
+graph_offset = Vector2( 0, -14.9933 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
 [node name="Spatial" type="Spatial"]
 
@@ -85,13 +285,51 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09802, 0 )
 
 [node name="Camera" type="Camera" parent="Player/RotationHelper"]
 
-[node name="DebugTracers" type="Spatial" parent="Player/RotationHelper"]
+[node name="Sword" type="Spatial" parent="Player/RotationHelper"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09013, -1.52916, -1.01878 )
+script = ExtResource( 2 )
 
-[node name="DebugTracer" parent="Player/RotationHelper/DebugTracers" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.427529, -2.2702 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/RotationHelper/Sword"]
+anims/idle = SubResource( 7 )
+anims/swing_bottom_left = SubResource( 8 )
+anims/swing_bottom_right = SubResource( 9 )
+anims/swing_top_left = SubResource( 10 )
+anims/swing_top_right = SubResource( 11 )
 
-[node name="DebugTracer2" parent="Player/RotationHelper/DebugTracers" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.427529, -2.97709 )
+[node name="Handle" type="Spatial" parent="Player/RotationHelper/Sword"]
+transform = Transform( 0.955531, -0.294891, 0, 0.294891, 0.95553, 0, 0, 0, 1, -0.285163, 0.475115, -0.594882 )
 
-[node name="DebugTracer3" parent="Player/RotationHelper/DebugTracers" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.427529, -3.72381 )
+[node name="Blade" type="MeshInstance" parent="Player/RotationHelper/Sword/Handle"]
+transform = Transform( 0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999997, 0, 0.75, 0 )
+mesh = SubResource( 12 )
+material/0 = null
+
+[node name="DebugTracers" type="Spatial" parent="Player/RotationHelper/Sword/Handle"]
+
+[node name="AnimationTree" type="AnimationTree" parent="Player/RotationHelper/Sword"]
+tree_root = SubResource( 22 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 23 )
+parameters/bottom/blend_position = 0.93152
+parameters/left/blend_position = 0.000938058
+parameters/right/blend_position = 0
+parameters/top/blend_position = -0.00469041
+
+[node name="Dirmometer" type="Node2D" parent="Player"]
+position = Vector2( 237.673, 126.316 )
+script = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": "A circle with an arrow"
+}
+
+[node name="FpsLabel" type="Label" parent="."]
+margin_left = 44.8754
+margin_top = 38.2271
+margin_right = 124.875
+margin_bottom = 77.2271
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

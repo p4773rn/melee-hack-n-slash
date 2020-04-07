@@ -1,0 +1,13 @@
+[gd_resource type="AnimationNodeBlendSpace1D" load_steps=3 format=2]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "swing_top_left"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "swing_top_right"
+
+[resource]
+blend_point_0/node = SubResource( 1 )
+blend_point_0/pos = -0.7
+blend_point_1/node = SubResource( 2 )
+blend_point_1/pos = 0.8

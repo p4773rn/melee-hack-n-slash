@@ -7,7 +7,7 @@ var tracing = false setget set_tracing
 func set_tracing(tracing_):
 	tracing = tracing_
 	if tracing_:
-		line_strips.append([])
+		line_strips = [[]]
 
 
 func _ready():
